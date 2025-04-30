@@ -1,25 +1,4 @@
-#include <iostream>
-#include <cmath>
-#include <string>
-
-long prime_sum(long n);
-bool isprime(long n);
-
-int main(int argc, char **argv){
-    long numero = std::stoi(argv[1]);
-    std::cout<<"La suma de los primos menores o iguales a " << numero <<" es: "<< prime_sum(numero) << "\n";
-    return 0;
-}
-
-long prime_sum(long n){
-    long sum = 0;
-    for (long i = 2; i < n; i++){
-        if (isprime(i)){
-            sum += i;
-        }
-    }
-    return sum ; 
-}
+#include "prime_fuctions.h"
 
 bool isprime(long n) {
     if (n <= 1) { //Compruebq que el numero ingresado este dentro de el rango
@@ -39,7 +18,29 @@ bool isprime(long n) {
             flag = false;
             break; // eSe termina el ciclo dado que se encontro al menos un divisor
         }
-   
-    } 
-return flag;
+    }
+    return flag;
+}
+
+long b_factorp(long n){
+    if (isprime(n)){
+        return n;
+    }
+    for (long i = n-1; i >=1 ; i--)
+    {
+        if(n % i == 0){
+            return i;
+        }
+    }
+    return 1;
+}
+
+long prime_sum(long n){
+    long sum = 0;
+    for (long i = 2; i < n; i++){
+        if (isprime(i)){
+            sum += i;
+        }
+    }
+    return sum ; 
 }
