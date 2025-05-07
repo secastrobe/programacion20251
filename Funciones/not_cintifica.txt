@@ -1,0 +1,4 @@
+ std::ofstream file("campo.txt");
+file.precision(16);
+file.setf(std::ios::scientific);
+
