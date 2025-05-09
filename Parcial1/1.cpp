@@ -27,8 +27,8 @@ int main(void){
     std::cout << richardson(x, 0.01, functio, central_diff, 2, 1, 2)<< "\n";
     */
     figure(x, 0.1, functio);
-    figure(x, 0.01, functio);
     figure(x, 0.05, functio);
+    figure(x, 0.01, functio);
     return 0;
 }
 

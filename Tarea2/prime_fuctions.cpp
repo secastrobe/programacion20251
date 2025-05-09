@@ -1,7 +1,7 @@
 #include "prime_fuctions.h"
 
 bool isprime(long n) {
-    if (n <= 1) { //Compruebq que el numero ingresado este dentro de el rango
+    if (n <= 1) { //Comprueba que el numero ingresado este dentro de el rango
         std::cerr << "Numero fuera de rango: " << n << "\n";
         return false;
     }
@@ -23,24 +23,32 @@ bool isprime(long n) {
 }
 
 long b_factorp(long n){
-    if (isprime(n)){
+    if (isprime(n)){ //Retorna el mismo numero si este es primo
         return n;
     }
-    for (long i = n-1; i >=1 ; i--)
+    long max_prime = 0; //retorna 0 para numeros como 1 o menores a 1
+    for (long i = 2; i <= std::sqrt(n) + 1  ; i++) //Cálculo de el mayor factor primo igual que en el ejemplo del profesor
     {
-        if(n % i == 0){
-            return i;
+        while(n % i == 0){
+            if(isprime(i)){
+            max_prime = i;
+            }
+            n /= i;
         }
+
     }
-    return 1;
+    if (n > 2 and isprime(n)){
+        max_prime = n;
+    }
+    return max_prime;
 }
 
 long prime_sum(long n){
-    long sum = 0;
+    long sum = 0; //Inicia la suma en 0
     for (long i = 2; i < n; i++){
-        if (isprime(i)){
+        if (isprime(i)){ //Se suma cada numero primo
             sum += i;
         }
     }
-    return sum ; 
+    return sum ; //Se retorna el resultado de la suma
 }

@@ -26,3 +26,11 @@ bool isprime(long n) {
 
     return flag;
 }
+
+int isprime_factor(int n){
+    for(int i = n/2 / 2; i >= 1; i--){
+        if(n % i == 0){
+            return i;
+        }
+    }
+}
