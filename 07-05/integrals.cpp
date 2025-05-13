@@ -22,9 +22,9 @@ double simpson( double a, double b, long n, fptr fun){
     }
 
     for (long i = 1; i <= (n/(2-1)); i++){
-        double value = a + (step*i*2);
+        double value = a + (step*(i*2));
         sum2 += fun(value);
     }
-    double integ = (step/3)*((fun(a)/2) + (sum1*4) + (sum2*2) + fun(b)/2);
+    double integ = (step/3)*((fun(a)) + (sum1*4) + (sum2*2) + fun(b));
     return integ;
 }
