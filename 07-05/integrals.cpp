@@ -21,7 +21,7 @@ double simpson( double a, double b, long n, fptr fun){
         sum1 += fun(value);
     }
 
-    for (long i = 1; i <= (n/(2-1)); i++){
+    for (long i = 1; i <= ((n/2)-1); i++){
         double value = a + (step*(i*2));
         sum2 += fun(value);
     }
