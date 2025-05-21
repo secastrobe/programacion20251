@@ -72,3 +72,28 @@ double gauss_3(double a, double b, fptr fun){
     double result = w1*fun(x0_2) + w0*fun(x1_2) + w1*fun(x2_2);
     return (b - a)/2.0 * result;
 }
+double gauss_7(double a, double b, fptr fun){
+        // aux
+    double aux1 = (b-a)/2;
+    double aux2 = (b+a)/2;
+
+    // define point coordinates
+    std::vector<double> x(3);
+    x[0] = -std::sqrt(3.0/5.0);
+    x[1] = 0;
+    x[2] = +std::sqrt(3.0/5.0);
+    
+    //define weigths
+    std::vector<double> w;
+    w.resize(3);
+    w[0] = 5.0/9.0;
+    w[1] = 8.0/9.0;
+    w[2] = 5.0/9.0;
+    
+    // compute integral
+    double result = 0.0;
+    for(int k = 0; k < 3; ++k){
+        result = result + w[k]*fun(aux1*x[k] + aux2);
+    }
+    return aux1*result;
+}

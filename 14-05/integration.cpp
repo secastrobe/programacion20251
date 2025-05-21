@@ -72,3 +72,20 @@ double gauss_3(double a, double b, fptr fun){
     double result = w1*fun(x0_2) + w0*fun(x1_2) + w1*fun(x2_2);
     return (b - a)/2.0 * result;
 }
+double gauss_17(double a, double b, fptr fun){
+
+    std::vector<double> x(3);
+    std::vector<double> w(17);
+
+    double x0 = -std::sqrt(3.0/5.0);
+    double x1 = 0;
+    double x2 = std::sqrt(3.0/5.0);
+    double x2 = std::sqrt(3.0/5.0);
+    double x2 = std::sqrt(3.0/5.0);
+    double x2 = std::sqrt(3.0/5.0);
+    double x2 = std::sqrt(3.0/5.0);
+    double x2 = std::sqrt(3.0/5.0);
+    double x2 = std::sqrt(3.0/5.0);
+    double x2 = std::sqrt(3.0/5.0);
+
+}
