@@ -14,7 +14,6 @@ int main(int argc, char **argv)
         std::cerr << "Uso: " << argv[0] << " M N\n";
         return 1;
     }
-
     const int M = std::stoi(argv[1]);
     const int N = std::stoi(argv[2]);
 

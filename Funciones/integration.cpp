@@ -35,3 +35,65 @@ double richardson(double a,double b, double n, fptr f, algptr alg, int alpha)
     double val2 = alg(a, b, n/2.0, f);
     return (aux*val2 - val1)/(aux - 1.0);
 }
+
+double gauss_2(double a, double b, fptr fun){
+
+    // define point coordinates
+    double x0 = -1.0/std::sqrt(3.0);
+    double x1 = 1.0 /std::sqrt(3.0);
+    
+    //define weigths
+    double w0 = 1.0;
+    double w1 = 1.0;
+
+    double x0_2 = (b-a)/2.0 * x0 + (b+a)/2.0;;
+    double x1_2 = (b-a)/2.0 * x1 + (b+a)/2.0;
+    
+    // compute integral
+    double result = w0*fun(x0_2) + w1*fun(x1_2);
+    return (b - a)/2.0 * result;
+}
+double gauss_3(double a, double b, fptr fun){
+
+    // define point coordinates
+    double x0 = -std::sqrt(3.0/5.0);
+    double x1 = 0;
+    double x2 = std::sqrt(3.0/5.0);
+    
+    //define weigths
+    double w0 = 8.0/9.0;
+    double w1 = 5.0/9.0;
+
+    double x0_2 = (b-a)/2.0 * x0 + (b+a)/2.0;
+    double x1_2 = (b-a)/2.0 * x1 + (b+a)/2.0;
+    double x2_2 = (b-a)/2-0 * x2 + (b+a)/2.0;
+    
+    // compute integral
+    double result = w1*fun(x0_2) + w0*fun(x1_2) + w1*fun(x2_2);
+    return (b - a)/2.0 * result;
+}
+double gauss_7(double a, double b, fptr fun){
+        // aux
+    double aux1 = (b-a)/2;
+    double aux2 = (b+a)/2;
+
+    // define point coordinates
+    std::vector<double> x(3);
+    x[0] = -std::sqrt(3.0/5.0);
+    x[1] = 0;
+    x[2] = +std::sqrt(3.0/5.0);
+    
+    //define weigths
+    std::vector<double> w;
+    w.resize(3);
+    w[0] = 5.0/9.0;
+    w[1] = 8.0/9.0;
+    w[2] = 5.0/9.0;
+    
+    // compute integral
+    double result = 0.0;
+    for(int k = 0; k < 3; ++k){
+        result = result + w[k]*fun(aux1*x[k] + aux2);
+    }
+    return aux1*result;
+}

@@ -1,4 +1,4 @@
-#include "derivatives.h"
+#include "diferential.h"
 
 double forward_diff(double x, double h, fptr f) {
     return (f(x + h) - f(x)) / h;

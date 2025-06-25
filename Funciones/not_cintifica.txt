@@ -1,4 +1,9 @@
- std::ofstream file("campo.txt");
+std::ofstream file("campo.txt");
 file.precision(16);
 file.setf(std::ios::scientific);
 
+
+std::cout.precision(10);
+std::cout.setf(std::ios::scientific);
+
+int argc, char **argv the argv start at 1 bc teh position 0 is the filename

@@ -17,6 +17,6 @@ int main(void){
 void print(std::string msg, const std::valarray<double>& v)
 {
     std::cout << msg << " ";
-    for (int n: v) { std::cout << std::setw(3) << n; }
+    for (double n: v) { std::cout << std::setw(3) << n; }
     std::cout << '\n';
 }
