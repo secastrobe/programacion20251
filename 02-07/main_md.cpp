@@ -4,6 +4,8 @@
 #include "integrator.h"
 #include "collider.h"
 #include "boundary.h"
+#include <fstream>
+#include <iostream>
 #include <vector>
 
 void initial_conditions(std::vector<Particle> & particles);
@@ -28,13 +30,22 @@ int main(int argc, char **argv) {
   // Boundary conditions
   Boundary bc(2.345, 0.0, 0.0, 0.0, 1.0); // RMAX, CX, CY, CZ, EN
 
+  //Initialize files
+  std::string filename = "data-10087.csv";
+  std::ofstream file(filename);
+
+    // Verificamos que el archivo se abrió correctamente
+    if (!file.is_open()) {
+        std::cerr << "Error al abrir el archivo." << std::endl;
+        return 1;
+    }
   // initial conditions and properties
   initial_conditions(bodies);
   collider.computeForces(bodies); // force at t = 0
   integrator.startIntegration(bodies); // start integration algorithm
-  std::cout << p["T0"] << "\t";
-  bodies[0].print();
-  std::cout << "\n";
+  file << p["T0"], ",";
+  bodies[0].csv_print(file);
+  file << "\n";
 
   // Time iteration
   const int niter = int((p["TF"] - p["T0"])/p["DT"]);
@@ -43,9 +54,9 @@ int main(int argc, char **argv) {
     integrator.timeStep(bodies);
     bc.apply(bodies);
     double time = p["T0"] + ii*p["DT"];
-    std::cout << time << "\t";
-    bodies[0].print();
-    std::cout << "\n";
+    file << time << ", ";
+    bodies[0].csv_print(file);
+    file << "\n";
   }
 
   return 0;
